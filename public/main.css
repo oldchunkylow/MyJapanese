@@ -1,0 +1,9 @@
+/* Button Styline */
+.active-button {
+    background: red;
+}
+
+/* Word Styling */
+.word-common {
+    color: green;
+}
