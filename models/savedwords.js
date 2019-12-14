@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const savedWordsSchema = new mongoose.Schema({
     id: String,
-    savedWords: [{
+    savedWords: {
         slug: String,
         is_common: Boolean,
         japanese: [{
@@ -13,7 +13,7 @@ const savedWordsSchema = new mongoose.Schema({
             english_definitions: [],
             parts_of_speech: []
         }]
-    }]
+    }
 });
 
 const SavedWords = mongoose.model('SavedWords', savedWordsSchema);

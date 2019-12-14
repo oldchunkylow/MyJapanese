@@ -4,7 +4,8 @@ const japaneseSchema = new mongoose.Schema({
     slug: String,
     is_common: false,
     japanese: [],
-    senses: []
+    senses: [],
+    id: ""
 });
 
 const Japanese = mongoose.model('Japanese', japaneseSchema);

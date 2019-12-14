@@ -24,7 +24,7 @@ app.use(express.static(`public`));
 app.use("/japanese", japaneseController);
 app.use("/dictionary", dictionaryController);
 app.use("/users", usersController);
-app.use("/users", savedWordsController);
+app.use("/savedwords", savedWordsController);
 app.use("/sessions", sessionsController);
 app.use(express.static(path.join(__dirname, "build")));
 
