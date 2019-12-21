@@ -14,7 +14,7 @@ const jisho = new jishoApi();
 
 router.get(`/:word`, (req, res) => {
     console.log("FINDING WORD")
-    jisho.searchForPhrase(req.params.word.toLowerCase()).then(result => {
+    jisho.searchForPhrase(req.params.word).then(result => {
         res.json(result.data)
     }).catch(() => {
         console.log("ERROR")

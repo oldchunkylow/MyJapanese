@@ -864,9 +864,9 @@ class App extends React.Component {
   };
   searchWord = event => {
     event.preventDefault();
-    let searchTerm= this.state.search.toLowerCase();
-    this.setState({ isLoading: true });
-    fetch("/dictionary/" + searchTerm, {
+
+    this.setState({ isLoading: true, search: this.state.search.toLowerCase() });
+    fetch("/dictionary/" + this.state.search, {
       method: "GET"
     })
       .then(data => {
@@ -876,7 +876,7 @@ class App extends React.Component {
         // let cleanedData = jsonedData.filter(
         //   word => word.slug.hasNumber === true
         // );
-        let cleanedData = jsonedData.filter(word => !hasNumber(word.slug.toLowerCase()));
+        let cleanedData = jsonedData.filter(word => !hasNumber(word.slug));
         this.setState({
           currentSearch: cleanedData,
           isLoading: false
