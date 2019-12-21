@@ -876,7 +876,7 @@ class App extends React.Component {
         // let cleanedData = jsonedData.filter(
         //   word => word.slug.hasNumber === true
         // );
-        let cleanedData = jsonedData.filter(word => !hasNumber(word.slug));
+        let cleanedData = jsonedData.filter(word => !hasNumber(word.slug.toLowerCase()));
         this.setState({
           currentSearch: cleanedData,
           isLoading: false
