@@ -51,23 +51,40 @@ class UserMenu extends React.Component {
           )[0];
           console.log(foundUser);
           if (foundUser.password === this.props.password) {
-            console.log("Logged In!");
+            this.props.parent.setState({
+              addedWord: true,
+              addedWordText: "Logged In!"
+            });
+            setTimeout(() => {
+              this.props.parent.setState({ addedWord: false });
+            }, 3000);
             this.props.parent.setState(
               {
                 currentUser: this.props.user,
                 id: foundUser._id
               },
               () => {
-                console.log("HI HERE");
                 console.log(this.props.parent.state.id);
                 this.props.getSavedWords();
               }
             );
           } else {
-            console.log("Wrong Password!");
+            this.props.parent.setState({
+              addedWord: true,
+              addedWordText: "Wrong Password!"
+            });
+            setTimeout(() => {
+              this.props.parent.setState({ addedWord: false });
+            }, 3000);
           }
         } else {
-          console.log("Creating User");
+          this.props.parent.setState({
+            addedWord: true,
+            addedWordText: "Created User!"
+          });
+          setTimeout(() => {
+            this.props.parent.setState({ addedWord: false });
+          }, 3000);
         }
       });
   };
@@ -100,6 +117,13 @@ class UserMenu extends React.Component {
               "Content-Type": "application/json"
             }
           }).then(createdUser => {
+            this.props.parent.setState({
+              addedWord: true,
+              addedWordText: "Created User!"
+            });
+            setTimeout(() => {
+              this.props.parent.setState({ addedWord: false });
+            }, 3000);
             return createdUser.json();
           });
         }
@@ -839,7 +863,8 @@ class App extends React.Component {
       selectedRandomWords: [],
       flashCardType: "word",
       selectedRandomMeanings: [],
-      addedWord: false
+      addedWord: false,
+      addedWordText: ""
     };
   }
   // CSS Renders
@@ -942,7 +967,7 @@ class App extends React.Component {
       });
   };
   addWord = word => {
-    this.setState({ addedWord: true });
+    this.setState({ addedWord: true, addedWordText: "Added New Word!" });
     setTimeout(() => {
       this.setState({ addedWord: false });
     }, 3000);
@@ -1072,10 +1097,11 @@ class App extends React.Component {
     return (
       <div class="container text-center">
         {this.state.addedWord ? (
-          <div class="add-word-text">Word added!</div>
+          <div class="add-word-text">{this.state.addedWordText}</div>
         ) : (
-          <div class="add-word-text hide">Word added!</div>
+          <div class="add-word-text hide">{this.state.addedWordText}</div>
         )}
+
         <h1 class="row justify-content-center">Japanese Learning</h1>
         {/* Show Login Menu */}
         {!this.state.currentUser ? (
