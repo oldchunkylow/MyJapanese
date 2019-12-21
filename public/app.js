@@ -33,7 +33,11 @@ class UserMenu extends React.Component {
   login = event => {
     event.preventDefault();
     fetch("/users", {
-      method: "GET"
+      method: "GET",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json"
+      }
     })
       .then(data => {
         return data.json();
@@ -70,7 +74,11 @@ class UserMenu extends React.Component {
   createUser = event => {
     event.preventDefault();
     fetch("/users", {
-      method: "GET"
+      method: "GET",
+      headers: {
+        Accept: "application/json, text/plain, */*",
+        "Content-Type": "application/json"
+      }
     })
       .then(data => {
         return data.json();
