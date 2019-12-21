@@ -865,7 +865,7 @@ class App extends React.Component {
   searchWord = event => {
     event.preventDefault();
     this.setState({ isLoading: true });
-    fetch("/dictionary/" + this.state.search, {
+    fetch("/dictionary/" + this.state.search.toLowerCase(), {
       method: "GET"
     })
       .then(data => {
